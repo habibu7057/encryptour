@@ -1,6 +1,6 @@
 <script setup>
 
-const props = defineProps(['type'])
+const props = defineProps(['type', 'name', 'role', 'id', 'image'])
 
 const cardBig = props.type === 'big'
 const cardSmall = props.type === 'small'
@@ -11,22 +11,21 @@ const cardSmall = props.type === 'small'
   <main>
     <div class="card" :class="props.type">
       <div class="img">
-        <img src="https://i.bandori.party/u/c/art/4326Kasumi-Toyama-Cool-Hospital-Director-Toyama-AZ7QQX.png"
-          alt="profile pic">
+        <img :src="props.image" alt="profile pic">
       </div>
       <div class="info">
         <div class="main">
           <h1>
-            Kasumi Toyama
+            {{ props.name }}
           </h1>
           <h2>
-            Vocalist
+            {{ props.role }}
           </h2>
         </div>
         <div class="more">
           <div class="elem">
-            <div class="key">Key</div>
-            <div class="value">Value</div>
+            <div class="key">ID</div>
+            <div class="value">{{ props.id }}</div>
           </div>
           <div class="elem">
             <div class="key">Key</div>
@@ -47,9 +46,13 @@ main {
   margin: 0.5rem;
 }
 
+.card {
+  max-width: 100vw;
+}
+
 .socials>button {
   width: 2rem;
-  height: 2rem
+  height: 2rem;
 }
 
 .img {
@@ -108,6 +111,8 @@ h2 {
 .card-big>.info>.socials {
   height: 2rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
 }
 
 .card-big>.info>.more {
@@ -155,9 +160,10 @@ h2 {
 
 .card-small>.info>.socials {
   display: flex;
+  gap: 0.25rem;
   flex-direction: column;
   position: absolute;
-  right: 0.5rem;
-  bottom: 0.5rem;
+  right: 1rem;
+  bottom: 1rem;
 }
 </style>
